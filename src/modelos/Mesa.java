@@ -34,4 +34,8 @@ public class Mesa {
     public void setNumero_personas(int numero_personas) {
         this.numero_personas = numero_personas;
     }
+    
+     public String obtenerCSV() {
+        return String.valueOf(numero) + "," + String.valueOf(numero_personas);
+    }
 }

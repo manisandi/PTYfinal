@@ -90,14 +90,29 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         btnPlatos.setFont(new java.awt.Font("Goudy Old Style", 0, 24)); // NOI18N
         btnPlatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icono_platos.png"))); // NOI18N
         btnPlatos.setText("Platos");
+        btnPlatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlatosActionPerformed(evt);
+            }
+        });
 
         btnMesas.setFont(new java.awt.Font("Goudy Old Style", 0, 24)); // NOI18N
         btnMesas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icono_mesas.png"))); // NOI18N
         btnMesas.setText("Mesas");
+        btnMesas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMesasActionPerformed(evt);
+            }
+        });
 
         btnPedidos.setFont(new java.awt.Font("Goudy Old Style", 0, 24)); // NOI18N
         btnPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icono_pedidos.png"))); // NOI18N
         btnPedidos.setText("Pedidos");
+        btnPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPedidosActionPerformed(evt);
+            }
+        });
 
         btnAjustes.setFont(new java.awt.Font("Goudy Old Style", 0, 24)); // NOI18N
         btnAjustes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icono_ajustes.png"))); // NOI18N
@@ -109,6 +124,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         btnUsuarios.setFont(new java.awt.Font("Goudy Old Style", 0, 24)); // NOI18N
         btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icono_usuarios.png"))); // NOI18N
         btnUsuarios.setText("Usuarios");
+        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsuariosActionPerformed(evt);
+            }
+        });
 
         jlUsuarioActivo.setFont(new java.awt.Font("Gargi", 1, 18)); // NOI18N
         jlUsuarioActivo.setText("-");
@@ -432,7 +452,31 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
         this.dispose();
+    }
+    
+    private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {                                         
+        FrmUsuarios ventana = new FrmUsuarios(UsuarioActivo);
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
+        this.dispose();
+    
     }//GEN-LAST:event_btnCerrarSesionMouseClicked
+
+    private void btnPlatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlatosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPlatosActionPerformed
+
+    private void btnMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMesasActionPerformed
+
+    private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPedidosActionPerformed
+
+    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUsuariosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

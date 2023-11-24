@@ -54,4 +54,7 @@ public class Usuario {
     public void setRol(Rol rol) {
         this.rol = rol;
     }
+    public String obtenerCSV(){
+        return String.valueOf(id) + "," + usuario + "," + contrasena + "," + String.valueOf(rol.getId());
+    }
 }

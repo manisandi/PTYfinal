@@ -44,4 +44,7 @@ public class Pedido {
     public void setMesa(Mesa mesa) {
         this.mesa = mesa;
     }
+    public String obtenerCSV() {
+        return String.valueOf(id) + "," + String.valueOf(plato.getCodigo()) + "," + String.valueOf(mesa.getNumero());
+    }
 }

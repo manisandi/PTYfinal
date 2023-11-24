@@ -65,4 +65,7 @@ public class Plato {
     public void setCategoria(int categoria) {
         this.categoria = categoria;
     }
+    public String obtenerCSV(){
+        return codigo + "," + nombre + "," + descripcion + "," + String.valueOf(precio) + "," + String.valueOf(categoria);
+    }
 }
