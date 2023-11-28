@@ -46,7 +46,7 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jlTitle" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="332" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="346" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -57,7 +57,7 @@
               <Component id="jlTitle" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="336" max="32767" attributes="0"/>
                   <Component id="jPanel1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -80,7 +80,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jtUsuarios">
+        <Component class="javax.swing.JTable" name="jtMesas">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="0" rowCount="0"/>
@@ -97,7 +97,7 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jlTitle">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Gestion Usuarios"/>
+        <Property name="text" type="java.lang.String" value="Gestion Mesas"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
@@ -109,14 +109,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jfielPassword" max="32767" attributes="0"/>
-                          <Component id="lblID" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtID" alignment="1" pref="187" max="32767" attributes="0"/>
+                          <Component id="lblNumero" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNumero" alignment="1" pref="187" max="32767" attributes="0"/>
                           <Component id="lblUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtUsuario" alignment="1" pref="187" max="32767" attributes="0"/>
-                          <Component id="lblContrasena" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblRol" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jcbRoles" alignment="1" pref="187" max="32767" attributes="0"/>
+                          <Component id="txtPersonas" alignment="1" pref="187" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
@@ -132,22 +128,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblID" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblNumero" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtID" min="-2" pref="31" max="-2" attributes="0"/>
+                  <Component id="txtNumero" min="-2" pref="31" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="lblUsuario" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtUsuario" min="-2" pref="31" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="lblContrasena" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jfielPassword" min="-2" pref="31" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="lblRol" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jcbRoles" min="-2" pref="35" max="-2" attributes="0"/>
-                  <EmptySpace pref="22" max="32767" attributes="0"/>
+                  <Component id="txtPersonas" min="-2" pref="31" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -158,39 +146,19 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="lblID">
+        <Component class="javax.swing.JLabel" name="lblNumero">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ID"/>
+            <Property name="text" type="java.lang.String" value="Numero"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblUsuario">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Usuario"/>
+            <Property name="text" type="java.lang.String" value="Cantidad de Personas"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblContrasena">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
-          </Properties>
+        <Component class="javax.swing.JTextField" name="txtPersonas">
         </Component>
-        <Component class="javax.swing.JLabel" name="lblRol">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Rol"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtUsuario">
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtID">
-        </Component>
-        <Component class="javax.swing.JComboBox" name="jcbRoles">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
+        <Component class="javax.swing.JTextField" name="txtNumero">
         </Component>
         <Component class="javax.swing.JButton" name="btnGuardar">
           <Properties>
@@ -199,8 +167,6 @@
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnGuardarMouseClicked"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JPasswordField" name="jfielPassword">
         </Component>
         <Component class="javax.swing.JButton" name="btnCancelar">
           <Properties>
@@ -230,11 +196,10 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnCrear">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Crear Nuevo"/>
+        <Property name="text" type="java.lang.String" value="Crear Nueva"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCrearMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnEliminar">

@@ -7,41 +7,36 @@ package ventanas;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import logica.LogicaArchivos;
-import logica.LogicaRoles;
-import logica.LogicaUsuarios;
-import modelos.Rol;
+import logica.LogicaMesas;
+import modelos.Mesa;
 import modelos.Usuario;
 
 /**
  *
  * @author yendri
  */
-public class FrmUsuarios extends javax.swing.JFrame {
+public class FrmMesas extends javax.swing.JFrame {
 
     private Usuario UsuarioActivo;
-    private LinkedList<Usuario> lista_usuarios;
-    private LinkedList<Rol> lista_roles;
-    private LogicaUsuarios l_usuarios;
-    private LogicaRoles l_roles;
-    private LogicaArchivos l_archivos;
+    private LinkedList<Mesa> lista_mesas;
+    private LogicaMesas l_mesas;
+
+    private boolean Creando;
+    private boolean Editando;
 
     /**
      * Creates new form FrmUsuarios
      */
-    public FrmUsuarios(Usuario usuarioActivo) {
+    public FrmMesas(Usuario usuarioActivo) {
         initComponents();
         UsuarioActivo = usuarioActivo;
 
         // Intancias de las clases que contienen la logica de negocio
-        l_usuarios = new LogicaUsuarios();
-        l_roles = new LogicaRoles();
-        lista_roles = l_roles.getListaRoles();
+        l_mesas = new LogicaMesas();
 
         // Cargas de información
-        CargarUsuarios();
+        CargarMesas();
         CargarInterfaz();
-        CargarRoles();
     }
 
     private void CargarInterfaz() {
@@ -52,66 +47,61 @@ public class FrmUsuarios extends javax.swing.JFrame {
      * Metodo que modifica la interfaz segun se requiere habilada o inhabilitada
      */
     private void CambiarEstadoControles(boolean estado) {
-        txtID.setEnabled(false);
-        txtUsuario.setEnabled(estado);
-        jfielPassword.setEnabled(estado);
-        jcbRoles.setEnabled(estado);
+        txtNumero.setEnabled(false);
+        txtPersonas.setEnabled(estado);
         btnGuardar.setEnabled(estado);
         btnCancelar.setEnabled(estado);
-        txtID.setText("");
-        txtUsuario.setText("");
-        jfielPassword.setText("");
-        jcbRoles.setSelectedItem("Administrador");
+        txtNumero.setText("");
+        txtPersonas.setText("");
     }
 
     // Busca el id más alto en la lista y le suma 1 para evitar que se repita
-    private Usuario IdMasAlto() {
-        Usuario usuarioConMayorID = null;
+    private Mesa IdMasAlto() {
+        Mesa mesaConMayorID = null;
         int maxID = Integer.MIN_VALUE;
 
-        for (Usuario usuario : lista_usuarios) {
-            if (usuario.getId() > maxID) {
-                maxID = usuario.getId();
-                usuarioConMayorID = usuario;
+        for (Mesa m : lista_mesas) {
+            if (m.getNumero() > maxID) {
+                maxID = m.getNumero();
+                mesaConMayorID = m;
             }
         }
 
-        return usuarioConMayorID;
+        return mesaConMayorID;
     }
 
     // carga la lista de usuarios en el jtable
-    private void CargarUsuarios() {
-        lista_usuarios = l_usuarios.getListaUsuarios();
+    private void CargarMesas() {
+        lista_mesas = l_mesas.getListaMesas();
 
         // Definir los nombres de las columnas
-        String[] columnas = {"ID", "Usuario", "Rol"};
+        String[] columnas = {"Numero", "Cantidad de Personas"};
 
         // Crear un DefaultTableModel con las columnas vacías y 0 filas
         DefaultTableModel model = new DefaultTableModel(columnas, 0);
 
         // Llenar el modelo con los datos de la lista de usuarios
-        for (Usuario usuario : lista_usuarios) {
-            Object[] rowData = {usuario.getId(), usuario.getUsuario(), usuario.getRol().getNombre()};
+        for (Mesa m : lista_mesas) {
+            Object[] rowData = {m.getNumero(), m.getNumero_personas()};
             model.addRow(rowData);
         }
 
-        jtUsuarios.setModel(model);
-    }
-
-    // carga la lista de roles en el combobox
-    private void CargarRoles() {
-        // Agregar elementos al JComboBox
-        for (Rol r : lista_roles) {
-            jcbRoles.addItem(r.getNombre());
-        }
+        jtMesas.setModel(model);
     }
 
     // carga los datos del usuario seleccionado en la tabla en los respectivos inputs
-    private void CargarDatos(Usuario seleccionado) {
-        txtID.setText(String.valueOf(seleccionado.getId()));
-        txtUsuario.setText(seleccionado.getUsuario());
-        jfielPassword.setText(seleccionado.getContrasena());
-        jcbRoles.setSelectedItem(seleccionado.getRol().getNombre());
+    private void CargarDatos(Mesa seleccionado) {
+        txtNumero.setText(String.valueOf(seleccionado.getNumero()));
+        txtPersonas.setText(String.valueOf(seleccionado.getNumero_personas()));
+    }
+
+    private void GuardarMesa(Mesa m) {
+        l_mesas.guardarMesa(m);
+        CambiarEstadoControles(false);
+        btnCrear.setEnabled(true);
+        btnEditar.setEnabled(true);
+        btnEliminar.setEnabled(true);
+        CargarMesas();
     }
 
     /**
@@ -124,18 +114,14 @@ public class FrmUsuarios extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtUsuarios = new javax.swing.JTable();
+        jtMesas = new javax.swing.JTable();
         jlTitle = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        lblID = new javax.swing.JLabel();
+        lblNumero = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
-        lblContrasena = new javax.swing.JLabel();
-        lblRol = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JTextField();
-        txtID = new javax.swing.JTextField();
-        jcbRoles = new javax.swing.JComboBox<>();
+        txtPersonas = new javax.swing.JTextField();
+        txtNumero = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
-        jfielPassword = new javax.swing.JPasswordField();
         btnCancelar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
@@ -144,7 +130,7 @@ public class FrmUsuarios extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jtUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        jtMesas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -152,17 +138,13 @@ public class FrmUsuarios extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jtUsuarios);
+        jScrollPane1.setViewportView(jtMesas);
 
-        jlTitle.setText("Gestion Usuarios");
+        jlTitle.setText("Gestion Mesas");
 
-        lblID.setText("ID");
+        lblNumero.setText("Numero");
 
-        lblUsuario.setText("Usuario");
-
-        lblContrasena.setText("Contraseña");
-
-        lblRol.setText("Rol");
+        lblUsuario.setText("Cantidad de Personas");
 
         btnGuardar.setText("Guardar");
         btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -186,14 +168,10 @@ public class FrmUsuarios extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jfielPassword)
-                        .addComponent(lblID, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtID, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                        .addComponent(lblNumero, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                         .addComponent(lblUsuario, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                        .addComponent(lblContrasena, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblRol, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jcbRoles, 0, 187, Short.MAX_VALUE))
+                        .addComponent(txtPersonas, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -204,22 +182,14 @@ public class FrmUsuarios extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblID)
+                .addComponent(lblNumero)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblContrasena)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jfielPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblRol)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jcbRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(txtPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnCancelar))
@@ -240,15 +210,10 @@ public class FrmUsuarios extends javax.swing.JFrame {
             }
         });
 
-        btnCrear.setText("Crear Nuevo");
+        btnCrear.setText("Crear Nueva");
         btnCrear.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCrearMouseClicked(evt);
-            }
-        });
-        btnCrear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearActionPerformed(evt);
             }
         });
 
@@ -282,7 +247,7 @@ public class FrmUsuarios extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jlTitle)
-                .addGap(332, 332, 332))
+                .addGap(346, 346, 346))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,7 +256,7 @@ public class FrmUsuarios extends javax.swing.JFrame {
                 .addComponent(jlTitle)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -313,76 +278,91 @@ public class FrmUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverMouseClicked
 
     private void btnCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearMouseClicked
-        CambiarEstadoControles(true);
-        int id_nuevo = IdMasAlto().getId() + 1;
-        txtID.setText(String.valueOf(id_nuevo));
-        btnCrear.setEnabled(false);
-        btnEditar.setEnabled(false);
-        btnEliminar.setEnabled(false);
-    }//GEN-LAST:event_btnCrearMouseClicked
-
-    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
-        CambiarEstadoControles(false);
-        btnCrear.setEnabled(true);
-        btnEditar.setEnabled(true);
-        btnEliminar.setEnabled(true);
-    }//GEN-LAST:event_btnCancelarMouseClicked
-
-    private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
-        int filaSeleccionada = jtUsuarios.getSelectedRow();
-        
-        // verficia si hay una linea seleccionada en la tabla
-        if (filaSeleccionada != -1) {
-            int id = (int) jtUsuarios.getModel().getValueAt(filaSeleccionada, 0);;
-            Usuario seleccionado = l_usuarios.buscarPorId(id);
+        if (btnCrear.isEnabled()) {
+            Editando = false;
+            Creando = true;
             CambiarEstadoControles(true);
-            CargarDatos(seleccionado);
+            int id_nuevo = IdMasAlto().getNumero() + 1;
+            txtNumero.setText(String.valueOf(id_nuevo));
             btnCrear.setEnabled(false);
             btnEditar.setEnabled(false);
             btnEliminar.setEnabled(false);
-        } else {
-            // Si no hay fila seleccionada
-            // Realiza la lógica que quieras ejecutar cuando no haya nada seleccionado
-            JOptionPane.showMessageDialog(this, "No hay ninguna fila seleccionada");
+        }
+    }//GEN-LAST:event_btnCrearMouseClicked
+
+    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
+        if (btnCancelar.isEnabled()) {
+            CambiarEstadoControles(false);
+            btnCrear.setEnabled(true);
+            btnEditar.setEnabled(true);
+            btnEliminar.setEnabled(true);
+            Editando = false;
+            Creando = false;
+        }
+    }//GEN-LAST:event_btnCancelarMouseClicked
+
+    private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
+        if (btnEditar.isEnabled()) {
+            Editando = true;
+            Creando = false;
+            int filaSeleccionada = jtMesas.getSelectedRow();
+
+            // verficia si hay una linea seleccionada en la tabla
+            if (filaSeleccionada != -1) {
+                int numero = (int) jtMesas.getModel().getValueAt(filaSeleccionada, 0);;
+                Mesa seleccionado = l_mesas.buscarPorNumero(numero);
+                CambiarEstadoControles(true);
+                CargarDatos(seleccionado);
+                btnCrear.setEnabled(false);
+                btnEditar.setEnabled(false);
+                btnEliminar.setEnabled(false);
+            } else {
+                // Si no hay fila seleccionada
+                // Realiza la lógica que quieras ejecutar cuando no haya nada seleccionado
+                JOptionPane.showMessageDialog(this, "No hay ninguna fila seleccionada", "Atención", JOptionPane.WARNING_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnEditarMouseClicked
 
     private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
-        Usuario u = new Usuario();
-        u.setId(Integer.parseInt(txtID.getText()));
-        u.setUsuario(txtUsuario.getText().trim());
-        u.setContrasena(new String(jfielPassword.getPassword()));
-        u.setRol(l_roles.buscarPorNombre(jcbRoles.getSelectedItem().toString()));
+        if (btnGuardar.isEnabled()) {
+            Mesa m = new Mesa();
+            m.setNumero(Integer.parseInt(txtNumero.getText().trim()));
+            m.setNumero_personas(Integer.parseInt(txtPersonas.getText().trim()));
 
-        l_usuarios.guardarUsuario(u);
-        CambiarEstadoControles(false);
-        btnCrear.setEnabled(true);
-        btnEditar.setEnabled(true);
-        btnEliminar.setEnabled(true);
-        CargarUsuarios();
+            if (Creando) {
+                if (l_mesas.buscarPorNumero(m.getNumero()) == null) {
+                    GuardarMesa(m);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Ya existe este numero de mesa en el sistema", "Atención", JOptionPane.WARNING_MESSAGE);
+                }
+            } else if (Editando) {
+                GuardarMesa(m);
+            } else {
+
+            }
+        }
     }//GEN-LAST:event_btnGuardarMouseClicked
 
     private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
-        int filaSeleccionada = jtUsuarios.getSelectedRow();
+        if (btnEliminar.isEnabled()) {
+            int filaSeleccionada = jtMesas.getSelectedRow();
 
-        if (filaSeleccionada != -1) {
-            int id = (int) jtUsuarios.getModel().getValueAt(filaSeleccionada, 0);;
-            Usuario seleccionado = l_usuarios.buscarPorId(id);
+            if (filaSeleccionada != -1) {
+                int numero = (int) jtMesas.getModel().getValueAt(filaSeleccionada, 0);;
+                Mesa seleccionado = l_mesas.buscarPorNumero(numero);
 
-            l_usuarios.eliminarUsuario(seleccionado);
+                l_mesas.eliminarMesa(seleccionado);
 
-            CargarUsuarios();
+                CargarMesas();
 
-        } else {
-            // Si no hay fila seleccionada
-            // Realiza la lógica que quieras ejecutar cuando no haya nada seleccionado
-            JOptionPane.showMessageDialog(this, "No hay ninguna fila seleccionada", "atencion", JOptionPane.WARNING_MESSAGE);
+            } else {
+                // Si no hay fila seleccionada
+                // Realiza la lógica que quieras ejecutar cuando no haya nada seleccionado
+                JOptionPane.showMessageDialog(this, "No hay ninguna fila seleccionada", "Atención", JOptionPane.WARNING_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnEliminarMouseClicked
-
-    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCrearActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
@@ -393,16 +373,11 @@ public class FrmUsuarios extends javax.swing.JFrame {
     private javax.swing.JButton btnVolver;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> jcbRoles;
-    private javax.swing.JPasswordField jfielPassword;
     private javax.swing.JLabel jlTitle;
-    private javax.swing.JTable jtUsuarios;
-    private javax.swing.JLabel lblContrasena;
-    private javax.swing.JLabel lblID;
-    private javax.swing.JLabel lblRol;
+    private javax.swing.JTable jtMesas;
+    private javax.swing.JLabel lblNumero;
     private javax.swing.JLabel lblUsuario;
-    private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtUsuario;
+    private javax.swing.JTextField txtNumero;
+    private javax.swing.JTextField txtPersonas;
     // End of variables declaration//GEN-END:variables
-
 }

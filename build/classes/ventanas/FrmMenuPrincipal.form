@@ -45,7 +45,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="PANELinicio" pref="661" max="32767" attributes="0"/>
+              <Component id="PANELinicio" pref="675" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -69,23 +69,18 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="btnUsuarios" alignment="0" pref="223" max="32767" attributes="0"/>
-                                      <Component id="btnPedidos" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="btnMesas" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="btnPlatos" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="lbllogo" alignment="0" min="-2" pref="214" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="btnAjustes" min="-2" pref="223" max="-2" attributes="0"/>
-                              </Group>
+                      <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="btnUsuarios" alignment="0" pref="223" max="32767" attributes="0"/>
+                              <Component id="btnPedidos" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btnMesas" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btnPlatos" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lbllogo" alignment="0" min="-2" pref="214" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jlUsuarioActivo" min="-2" pref="223" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btnAjustes" pref="223" max="32767" attributes="0"/>
+                              <Component id="jlUsuarioActivo" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="18" max="32767" attributes="0"/>
@@ -107,9 +102,9 @@
                       <Component id="btnUsuarios" min="-2" pref="68" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnAjustes" min="-2" pref="60" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <EmptySpace pref="52" max="32767" attributes="0"/>
                       <Component id="jlUsuarioActivo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="56" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -126,6 +121,7 @@
                 <Property name="text" type="java.lang.String" value="Platos"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnPlatosMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPlatosActionPerformed"/>
               </Events>
             </Component>
@@ -140,7 +136,7 @@
                 <Property name="text" type="java.lang.String" value="Mesas"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMesasActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnMesasMouseClicked"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnPedidos">
@@ -153,9 +149,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Pedidos"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPedidosActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnAjustes">
               <Properties>
@@ -187,7 +180,7 @@
                 <Property name="text" type="java.lang.String" value="Usuarios"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUsuariosActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnUsuariosMouseClicked"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jlUsuarioActivo">

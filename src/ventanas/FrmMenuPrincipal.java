@@ -90,6 +90,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         btnPlatos.setFont(new java.awt.Font("Goudy Old Style", 0, 24)); // NOI18N
         btnPlatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icono_platos.png"))); // NOI18N
         btnPlatos.setText("Platos");
+        btnPlatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPlatosMouseClicked(evt);
+            }
+        });
         btnPlatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPlatosActionPerformed(evt);
@@ -99,20 +104,15 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         btnMesas.setFont(new java.awt.Font("Goudy Old Style", 0, 24)); // NOI18N
         btnMesas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icono_mesas.png"))); // NOI18N
         btnMesas.setText("Mesas");
-        btnMesas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMesasActionPerformed(evt);
+        btnMesas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMesasMouseClicked(evt);
             }
         });
 
         btnPedidos.setFont(new java.awt.Font("Goudy Old Style", 0, 24)); // NOI18N
         btnPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icono_pedidos.png"))); // NOI18N
         btnPedidos.setText("Pedidos");
-        btnPedidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPedidosActionPerformed(evt);
-            }
-        });
 
         btnAjustes.setFont(new java.awt.Font("Goudy Old Style", 0, 24)); // NOI18N
         btnAjustes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icono_ajustes.png"))); // NOI18N
@@ -124,9 +124,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         btnUsuarios.setFont(new java.awt.Font("Goudy Old Style", 0, 24)); // NOI18N
         btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icono_usuarios.png"))); // NOI18N
         btnUsuarios.setText("Usuarios");
-        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUsuariosActionPerformed(evt);
+        btnUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUsuariosMouseClicked(evt);
             }
         });
 
@@ -138,20 +138,17 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jpcontroladorLayout.setHorizontalGroup(
             jpcontroladorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpcontroladorLayout.createSequentialGroup()
-                .addGroup(jpcontroladorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpcontroladorLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(jpcontroladorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpcontroladorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btnUsuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                                .addComponent(btnPedidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnMesas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnPlatos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lbllogo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnAjustes, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jpcontroladorLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jlUsuarioActivo, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(9, 9, 9)
+                .addGroup(jpcontroladorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpcontroladorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnUsuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                        .addComponent(btnPedidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnMesas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnPlatos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbllogo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpcontroladorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnAjustes, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                        .addComponent(jlUsuarioActivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jpcontroladorLayout.setVerticalGroup(
@@ -169,9 +166,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnAjustes, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(jlUsuarioActivo)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         PANELinicio.add(jpcontrolador);
@@ -436,7 +433,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(PANELinicio, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+                .addComponent(PANELinicio, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
                 .addGap(15, 15, 15))
         );
 
@@ -452,31 +449,32 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
         this.dispose();
-    }
-    
-    private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {                                         
+    }//GEN-LAST:event_btnCerrarSesionMouseClicked
+
+    private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
         FrmUsuarios ventana = new FrmUsuarios(UsuarioActivo);
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
         this.dispose();
-    
-    }//GEN-LAST:event_btnCerrarSesionMouseClicked
+    }//GEN-LAST:event_btnUsuariosMouseClicked
+
+    private void btnMesasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMesasMouseClicked
+        FrmMesas ventana = new FrmMesas(UsuarioActivo);
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnMesasMouseClicked
+
+    private void btnPlatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlatosMouseClicked
+        FrmPlatos ventana = new FrmPlatos(UsuarioActivo);
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnPlatosMouseClicked
 
     private void btnPlatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlatosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPlatosActionPerformed
-
-    private void btnMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMesasActionPerformed
-
-    private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPedidosActionPerformed
-
-    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUsuariosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

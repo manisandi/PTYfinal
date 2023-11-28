@@ -14,7 +14,7 @@ public class Plato {
     private String nombre;
     private String descripcion;
     private double precio;
-    private int categoria; // Entrada, Plato Fuerte, Postre, Bebida
+    private int categoria; // 1 - Entrada, 2 - Plato Fuerte, 3 - Postre, 4 - Bebida
 
     public Plato() {}
 
@@ -65,7 +65,8 @@ public class Plato {
     public void setCategoria(int categoria) {
         this.categoria = categoria;
     }
-    public String obtenerCSV(){
-        return codigo + "," + nombre + "," + descripcion + "," + String.valueOf(precio) + "," + String.valueOf(categoria);
+    
+    public String obtenerCSV(){ // Se reemplazan los enters del la desripcion por & para evitar problemas al guardar pero se devuelve a su valor original al mostrarse
+        return codigo + "|" + nombre + "|" + descripcion.replace("\n", "&") + "|" + String.valueOf(precio) + "|" + String.valueOf(categoria);
     }
 }

@@ -9,11 +9,13 @@ package modelos;
  * @author yendri
  */
 public class Pedido {
+
     private int id;
     private Plato plato;
     private Mesa mesa;
 
-    public Pedido() {}
+    public Pedido() {
+    }
 
     public Pedido(int id, Plato plato, Mesa mesa) {
         this.id = id;
@@ -44,6 +46,7 @@ public class Pedido {
     public void setMesa(Mesa mesa) {
         this.mesa = mesa;
     }
+
     public String obtenerCSV() {
         return String.valueOf(id) + "," + String.valueOf(plato.getCodigo()) + "," + String.valueOf(mesa.getNumero());
     }
